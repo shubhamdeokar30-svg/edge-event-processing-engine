@@ -1,0 +1,62 @@
+<main class="container mt-5">
+  <div class="row">
+    <div class="col-12 text-center mb-4">
+      <h1 class="display-4 font-weight-bold">{{ title }}</h1>
+      <p class="lead text-muted">Real-time Sensor Monitoring & Alert System</p>
+      <hr class="my-4">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Event Control Panel</h5>
+          <app-dashboard></app-dashboard>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card bg-light shadow-sm">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h6 class="mb-0">System Status</h6>
+            <span class="badge" [ngClass]="isServerConnected ? 'bg-success' : 'bg-danger'">
+              {{ isServerConnected ? 'Connected' : 'Disconnected' }}
+            </span>
+          </div>
+
+          <p class="small mt-2" [ngClass]="isServerConnected ? 'text-success' : 'text-danger'">
+            {{ isServerConnected ? '✅ Ready to process events' : '❌ Backend unreachable on Port 3000' }}
+          </p>
+          
+          <hr>
+          
+          <p class="small text-secondary">
+            Enter a Device ID and click "Emit Event" 3 times to trigger a critical alert.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+</main>
+
+<style>
+  .container {
+    max-width: 1000px;
+  }
+  h1 {
+    color: #1976d2; 
+    letter-spacing: -1px;
+  }
+  .card {
+    border-radius: 12px;
+    border: none;
+  }
+  .badge {
+    padding: 6px 10px;
+  }
+</style>

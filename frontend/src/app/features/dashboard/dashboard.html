@@ -1,0 +1,59 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-5">
+      
+      <!-- <div class="card shadow border-0 p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+          <h4 class="mb-0">🖥️ System Status</h4>
+          <span class="badge" [ngClass]="isServerConnected ? 'bg-success' : 'bg-danger'">
+            {{ isServerConnected ? 'Connected' : 'Disconnected' }}
+          </span>
+        </div>
+        <p class="small text-muted mt-2 mb-0">
+          {{ isServerConnected ? '✅ Ready to process events' : '❌ Backend unreachable on Port 3000' }}
+        </p>
+      </div> -->
+
+      <div class="card shadow border-0 p-4">
+        <h4>📡 Simulator</h4>
+        <div class="mb-3">
+          <label class="form-label">Device ID</label>
+          <input [(ngModel)]="payload.deviceId" class="form-control" placeholder="e.g. sensor-001">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Value (Current: {{payload.value}})</label>
+          <input type="range" [(ngModel)]="payload.value" min="0" max="150" class="form-range">
+        </div>
+        <button (click)="emit()" class="btn btn-primary w-100" [disabled]="!isServerConnected">
+          Emit Event
+        </button>
+        <p *ngIf="lastEventId" class="mt-2 small text-muted text-center">ID: {{lastEventId}}</p>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4>📢 Active Alerts</h4>
+        <button (click)="clear()" class="btn btn-sm btn-outline-secondary" [disabled]="alerts.length === 0">
+          Clear
+        </button>
+      </div>
+
+      <div *ngIf="alerts.length === 0" class="p-5 border rounded bg-light text-center text-muted">
+        No alerts detected. Everything is normal.
+      </div>
+
+      <!-- <div *ngFor="let alert of alerts" class="alert alert-danger shadow-sm mb-2 animate__animated animate__fadeIn">
+        <div class="d-flex align-items-center">
+          <span class="fs-4 me-3">⚠️</span>
+          <div>
+            <strong>{{ alert.rule }}</strong>: {{ alert.message }}
+            <div class="small text-muted" style="font-size: 0.75rem;">
+              {{ alert.timestamp | date:'shortTime' }}
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
